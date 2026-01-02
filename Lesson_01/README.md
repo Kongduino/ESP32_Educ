@@ -21,6 +21,8 @@ While we're at it, you can connect the OLED, with a Boson-to-Dupont cable; from 
 
 This lesson is divided into 3 steps. [Part a](https://github.com/Kongduino/ESP32_Educ/blob/master/Lesson_01/01_a_DHT11.py) teaches you the basics of reading data from the DHT11 and display it in the REPL on a regular basis, here 30 seconds.
 
+### Part A
+
 ```python
 import dht, machine, time
 
@@ -65,3 +67,36 @@ Means that Python needs to replace `{T}` with the contents of the variable T. Th
 Press the RUN button (the green arrow) and the code should start displaying Temperature and Humidity right away.
 
 ![Display](../Assets/DHT11_a.png)
+
+### Part B
+
+We will now upgrade our code to display the data on the small OLED screen. These are very common, and cheap. And very easy to use. They're usually called something along the lines of SSD1306, and can vary in size, although 128 x 64 pixels is the most common. There is of course a library for this – it's in the `lib` folder, where all the extra libraries are stored.
+
+So the main difference between the previous part and this one is the addition of SSD1306-related code. The way to detect whether an I2C device is present is to scan the bus, and see whether the *expected* ID number is there – there is no official registry, so some devices may have the same ID while not being what you expect. But on this board it is not an issue. If you have a `0x3C` ID, it is the OLED...
+
+
+```python
+hasOLED = False
+
+if devices.count(0x3c) == 0:
+    print("No SSD1306!")
+    sys.exit()
+else:
+    from ssd1306 import SSD1306_I2C
+    from freesans9 import FreeSans9Defs
+    display = SSD1306_I2C(128, 64, i2c)
+    hasOLED = True
+```
+
+We add a variable called `hasOLED` and set it to false. It will be used in `displayDHT()` to decide whether to show the data on the OLED, or not. If we have the OLED, we set `hasOLED` to true, and import a font and the ssd1306 library. We can now initialize a `display` object that will control the OLED.
+
+The rest of the code is similar. And as mentioned, the `displayDHT()` function checks whether we have an OLED plugged in, and if so, prints out the data on-screen:
+
+```python
+    if hasOLED:
+        display.cls()
+        display.displayString(FreeSans9Defs, f"DHT:", 44, 0)
+        display.displayString(FreeSans9Defs, f"Temp: {T}C", 0, 20)
+        display.displayString(FreeSans9Defs, f"RH:  {H}%", 0, 40)
+        display.show(rotate180 = False)
+```
