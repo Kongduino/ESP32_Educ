@@ -19,7 +19,7 @@ While we're at it, you can connect the OLED, with a Boson-to-Dupont cable; from 
 
 ## Dive in
 
-This lesson is divided into 3 steps. [Part a](https://github.com/Kongduino/ESP32_Educ/blob/master/Lesson_01/01_a_DHT11.py) teaches you the basics of reading data from the DHT11 and display on a regular basis, here 30 seconds.
+This lesson is divided into 3 steps. [Part a](https://github.com/Kongduino/ESP32_Educ/blob/master/Lesson_01/01_a_DHT11.py) teaches you the basics of reading data from the DHT11 and display it in the REPL on a regular basis, here 30 seconds.
 
 ```python
 import dht, machine, time
@@ -45,6 +45,8 @@ while True:
 There's already a DHT library in MicroPython, so we don't need to install anything, just `import dht` amd create a DHT object, which we will call `D`. We set up an interval to 30,000 milliseconds, and a `lastDisplay` semaphore to 0, ie never used so far.
 
 In a `while True` loop (which means it never fails, ie runs forever), we check the elapsed time in milliseconds, and compare it with the lastDisplay record: `time.ticks_ms() - lastDisplay`. If it's more than 30 seconds, we print data in the REPL, and update `lastDisplay`. If not, we just skip over.
+
+This gives you much more control on the execution of the loop than using `time.sleep(30)`, which blocks the execution of other code: with `sleep()` MicroPython cannot do anything else, it has to wait it out. Whereas with this "trick" of checking intervals, you can decide to do something else in-between.
 
 The `displayDHT()` function reads DHT data, and prints it out. Having a function here isn't necessary, as we only use it in one place, but it is good practice – it keeps the code cleaner, and easier to read.
 
