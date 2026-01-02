@@ -60,4 +60,4 @@ Means that Python needs to replace `{T}` with the contents of the variable T. Th
 
 Press the RUN button (the green arrow) and the code should start displaying Temperature and Humidity right away.
 
-![Display](../Assets/DHT11_a_.png)
+![Display](../Assets/DHT11_a.png)
