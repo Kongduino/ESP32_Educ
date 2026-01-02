@@ -72,7 +72,7 @@ Press the RUN button (the green arrow) and the code should start displaying Temp
 
 We will now upgrade our code to display the data on the small OLED screen. These are very common, and cheap. And very easy to use. They're usually called something along the lines of SSD1306, and can vary in size, although 128 x 64 pixels is the most common. There is of course a library for this – it's in the `lib` folder, where all the extra libraries are stored.
 
-So the main difference between the previous part and [this one](https://github.com/Kongduino/ESP32_Educ/blob/master/Lesson_01/01_b_DHT11.py) is the addition of SSD1306-related code. The way to detect whether an I2C device is present is to scan the bus, and see whether the *expected* ID number is there – there is no official registry, so some devices may have the same ID while not being what you expect. But on this board it is not an issue. If you have a `0x3C` ID, it is the OLED...
+So the main difference between the previous part and [this one](https://github.com/Kongduino/ESP32_Educ/blob/master/Lesson_01/01_b_DHT11.py) is the addition of SSD1306-related code. The way to detect whether an I2C device is present is to scan the bus, with `devices = i2c.scan()`, and see whether the *expected* ID number is there – there is no official registry, so some devices may have the same ID while not being what you expect. But on this board it is not an issue. If you have a `0x3C` ID, it is the OLED...
 
 
 ```python
