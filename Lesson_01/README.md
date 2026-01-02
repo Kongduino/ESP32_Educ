@@ -100,3 +100,5 @@ The rest of the code is similar. And as mentioned, the `displayDHT()` function c
         display.displayString(FreeSans9Defs, f"RH:  {H}%", 0, 40)
         display.show(rotate180 = False)
 ```
+
+This way, if the OLED is not plugged in, or not correctly, the code will still work like in Part A.
