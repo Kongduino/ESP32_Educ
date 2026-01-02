@@ -4,7 +4,7 @@ A progressive tutorial for the ESP32 S3 AIoT board, based on MicroPython.
 
 ## The Board
 
-I found this board on Taobao, and ordered the smaller version to try it out. I have been wanting to write such a tutorial, and this board looked like a perfect fit. I wasn't disappointed: while there are a few quirks, typos and the like, by and large this board is VERY well made, and deserves some love. So here goes.
+I found this board on Taobao, and ordered the cheaper version to try it out (the main difference I can see is the slightly more expensive one has a camera, hence the `AIoT` mention). I have been wanting to write such a tutorial, and this board looked like a perfect fit. I wasn't disappointed: while there are a few quirks, typos and the like, by and large this board is VERY well made, and deserves some love. So here goes.
 
 ![Board](Assets/Board.jpg)
 *Ready for Lesson 01?*
