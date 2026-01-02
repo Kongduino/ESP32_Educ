@@ -101,4 +101,4 @@ The rest of the code is similar. And as mentioned, the `displayDHT()` function c
         display.show(rotate180 = False)
 ```
 
-This way, if the OLED is not plugged in, or not correctly, the code will still work like in Part A.
+This way, if the OLED is not plugged in, or not plugged in correctly, the code will still work like in Part A.
