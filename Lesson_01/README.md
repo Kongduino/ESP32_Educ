@@ -15,6 +15,8 @@ While we're at it, you can connect the OLED, with a Boson-to-Dupont cable; from 
 * G: GND, one of the many GND pins (Black on the photo)
 * V: VCC, one of the many 3.3 V pins (Red on the photo)
 
+![OLED](../Assets/OLED.png)
+
 ## Dive in
 
 This lesson is divided into 3 steps. [Part a](https://github.com/Kongduino/ESP32_Educ/blob/master/Lesson_01/01_a_DHT11.py) teaches you the basics of reading data from the DHT11 and display on a regular basis, here 30 seconds.
