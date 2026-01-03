@@ -93,6 +93,8 @@ You can see that in the code I am using `time.ticks_ms()` to decide whether to r
 
 It is the same "trick" we were using in lesson 01 to decide whether to poll the DHT11 or not.
 
+![02_a_RGB_LED](../Assets/02_a_RGB_LED.gif)
+
 ## 02_b_OLED
 
 We can also use the potentiometer to set the contrast on the OLED. This is even easier.
