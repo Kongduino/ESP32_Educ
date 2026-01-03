@@ -1,5 +1,7 @@
 # Lesson 02: Neopixel!
 
+## 02_a_RGB_LED
+
 The ESP32 S3 board itself has a Neopixel: an RGB LED that can change its colour by setting values, 0 to 255, individually for the red, green and blue channels, hence the RGB name. It also can be chained: you will find on the market panels, rings, strips etc with any number of Neopixels. Each of which being addressable separately, allowing for pretty colorful effects.
 
 But, we have only one. So let's try something fun with it. The board has a potentiometer, a stick-like know that you can turn left and right. It produces an analog value that can be converted to a 12-bit numeric value, from 0 to 4,095. We could map this value to an array of colour values, and change the colour of the Neopixel accordingly.
@@ -90,6 +92,55 @@ You can see that in the code I am using `time.ticks_ms()` to decide whether to r
 ```
 
 It is the same "trick" we were using in lesson 01 to decide whether to poll the DHT11 or not.
+
+## 02_b_OLED
+
+We can also use the potentiometer to set the contrast on the OLED. This is even easier.
+
+```python
+while True:
+    if time.ticks_ms() - lastRead > interval:
+        now = int(adc.read() / 16)
+        if lastValue != now:
+            display.contrast(now)
+            print(f"Contrast: {now}")
+            if now == 0:
+                display.poweroff()
+            else:
+                display.poweron()
+            lastValue = now
+            lastRead = time.ticks_ms()
+```
+
+The `display.contrast(V)` sets the contrast to `V` (0 to 255), so this is the same process: read the value from the potentiometer and divide it by 16. And apply that. The only twist here is that if we reach `0` we want to turn the display off with `display.poweroff()`. Or turn it on if we go above, with `display.poweron()`.
+
+## 02_c_RGB_LED_DHT11
+
+Why now use the Neopixel to display a colour, depending on the ambien temperature? Blue if too cold, yellow if below comfortable, green if comfortable, orange if it starts to get sweaty, and red for where's the aircon? The core code will be deciding what stage we're at, with `if`, `elif` and `else`:
+
+```python
+    if T < 10:
+        setColours(0, 0, 255) # Blue
+    elif T < 18:
+        setColours(255, 255, 143) # Yellow
+    elif T < 26:
+        setColours(0, 255, 0) # Green
+    elif T < 33:
+        setColours(255, 191, 0) # Orange
+    else:
+        setColours(255, 0, 0)
+```
+
+`setColours(255, 0, 0)` us a modified version of the previous code: it takes pre-determined r, g and b values, and effects the change. Very simple code:
+
+```python
+def setColours(r, g, b):
+    np[0] = (r, g, b)
+    np.write()
+```
+
+This is the result with an ambient temperature of 22°:
+
 
 ![02_c_RGB_LED_DHT11_1](../Assets/02_c_RGB_LED_DHT11_1.jpg)
 ![02_c_RGB_LED_DHT11_2](../Assets/02_c_RGB_LED_DHT11_2.jpg)
