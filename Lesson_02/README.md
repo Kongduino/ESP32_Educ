@@ -116,7 +116,7 @@ The `display.contrast(V)` sets the contrast to `V` (0 to 255), so this is the sa
 
 ## 02_c_RGB_LED_DHT11
 
-Why now use the Neopixel to display a colour, depending on the ambien temperature? Blue if too cold, yellow if below comfortable, green if comfortable, orange if it starts to get sweaty, and red for where's the aircon? The core code will be deciding what stage we're at, with `if`, `elif` and `else`:
+Why not use the Neopixel to display a colour, depending on the ambien temperature? Blue if too cold, yellow if below comfortable, green if comfortable, orange if it starts to get sweaty, and red for where's the aircon? The core code will be deciding what stage we're at, with `if`, `elif` and `else`:
 
 ```python
     if T < 10:
