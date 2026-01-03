@@ -131,7 +131,7 @@ Why not use the Neopixel to display a colour, depending on the ambien temperatur
         setColours(255, 0, 0)
 ```
 
-`setColours(255, 0, 0)` us a modified version of the previous code: it takes pre-determined r, g and b values, and effects the change. Very simple code:
+`setColours(255, 0, 0)` is a modified version of the previous code: it takes pre-determined r, g and b values, and effects the change. Very simple code:
 
 ```python
 def setColours(r, g, b):
