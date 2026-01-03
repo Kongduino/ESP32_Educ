@@ -1,4 +1,4 @@
-import neopixel, time
+import time
 from machine import Pin, ADC
 
 adc_pin = Pin(13, mode=Pin.IN)

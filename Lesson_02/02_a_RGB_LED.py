@@ -112,5 +112,3 @@ while True:
             setColours(now)
             lastRead = time.ticks_ms()
             lastValue = now
-
-
