@@ -90,3 +90,6 @@ You can see that in the code I am using `time.ticks_ms()` to decide whether to r
 ```
 
 It is the same "trick" we were using in lesson 01 to decide whether to poll the DHT11 or not.
+
+![02_c_RGB_LED_DHT11_1](../Assets/02_c_RGB_LED_DHT11_1.jpg)
+![02_c_RGB_LED_DHT11_2](../Assets/02_c_RGB_LED_DHT11_2.jpg)
