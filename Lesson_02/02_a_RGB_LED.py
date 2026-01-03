@@ -88,7 +88,7 @@ Palette = [
 
 np = neopixel.NeoPixel(machine.Pin(48), 1)
 # We only have one neopixel, on Pin 48
-np[0] = (255, 0, 0) # RGB values
+np[0] = (0, 0, 0) # RGB values
 np.write()
 
 def setColours(now):
@@ -112,3 +112,6 @@ while True:
             setColours(now)
             lastRead = time.ticks_ms()
             lastValue = now
+
+
+
