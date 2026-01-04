@@ -4,7 +4,7 @@
 
 The ESP32 S3 board itself has a Neopixel: an RGB LED that can change its colour by setting values, 0 to 255, individually for the red, green and blue channels, hence the RGB name. It also can be chained: you will find on the market panels, rings, strips etc with any number of Neopixels. Each of which being addressable separately, allowing for pretty colorful effects.
 
-But, we have only one. So let's try something fun with it. The board has a potentiometer, a stick-like know that you can turn left and right. It produces an analog value that can be converted to a 12-bit numeric value, from 0 to 4,095. We could map this value to an array of colour values, and change the colour of the Neopixel accordingly.
+But, we have only one. So let's try something fun with it. The board has a potentiometer, a stick-like knob that you can turn left and right. It produces an analog value that can be converted to a 12-bit numeric value, from 0 to 4,095. We could map this value to an array of colour values, and change the colour of the Neopixel accordingly.
 
 AI provided Python code to create a rainbow-style colour palette, from red to purple:
 
@@ -21,7 +21,7 @@ cmap = plt.get_cmap('turbo')
 turbo_colors_rgba = cmap(np.linspace(0, 1, 256))
 
 # If you prefer 0-255 integer RGB values (without alpha channel):
-#  turbo_colors_rgb256 = (turbo_colors_rgba[:, :3] * 255).astype(int)
+turbo_colors_rgb256 = (turbo_colors_rgba[:, :3] * 255).astype(int)
 ```
 
 Running this on a computer supplied a 256-colour palette that looked like this:
@@ -60,7 +60,7 @@ adc.atten(ADC.ATTN_11DB)
 The [documentation](https://docs.micropython.org/en/latest/esp32/quickref.html) says:
 
 > To read voltages above the reference voltage, apply input attenuation with the `atten` keyword argument. Valid values (and approximate linear measurement ranges) are:
-
+> 
 > ADC.ATTN_0DB: No attenuation (100mV - 950mV)
 > ADC.ATTN_2_5DB: 2.5dB attenuation (100mV - 1250mV)
 > ADC.ATTN_6DB: 6dB attenuation (150mV - 1750mV)
@@ -81,7 +81,7 @@ def setColours(now):
     np.write()
 ```
 
-The `setColours(now)` function takes the index, and retrieves the colour data, which is itself a 3-number array. It then assigns the r, g and b values, and assigns it to the Neopixel. Nothing happens yet: you need `np.write()` to actually provoke the change in colours.
+The `setColours(now)` function takes the index, and retrieves the colour data, which is itself a 3-number array. It then assigns the r, g and b values, and sets up the Neopixel. Nothing happens yet: you need `np.write()` to actually provoke the change in colours.
 
 ### The use of ticks_ms()
 
@@ -118,7 +118,7 @@ The `display.contrast(V)` sets the contrast to `V` (0 to 255), so this is the sa
 
 ## 02_c_RGB_LED_DHT11
 
-Why not use the Neopixel to display a colour, depending on the ambien temperature? Blue if too cold, yellow if below comfortable, green if comfortable, orange if it starts to get sweaty, and red for where's the aircon? The core code will be deciding what stage we're at, with `if`, `elif` and `else`:
+Why not use the Neopixel to display a colour, depending on the ambient temperature? Blue if too cold, yellow if below comfortable, green if comfortable, orange if it starts to get sweaty, and red for *where's the aircon?* The core code will be deciding what stage we're at, with `if`, `elif` and `else`:
 
 ```python
     if T < 10:
