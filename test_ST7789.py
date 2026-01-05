@@ -10,8 +10,9 @@ def rect(buff:ptr16, x:int, y:int, w:int, h:int, c:int):
         b[sx+(240*(i//w))+i%w] = c
 
 display = ST7789(
-    spi = SPI(0, sck = Pin(18, Pin.OUT), mosi=Pin(19, Pin.OUT)),
-    dc = Pin(17, Pin.OUT),
+    spi = SPI(1, sck = Pin(21, Pin.OUT), mosi=Pin(47, Pin.OUT)),
+    dc = Pin(43, Pin.OUT),
+    cs = Pin(44, Pin.OUT),
     rst = Pin(21, Pin.OUT),
     bl = Pin(20, Pin.OUT),
     baud = 62_500_000,
@@ -46,10 +47,8 @@ def make_things(cnt:int = 5):
         
 things = make_things(50)
 
-while True:
+for i in range(0, 100):
     display.clear_buff(randint(0x0000, 0x7F7F))
-    
     for t in things:
         t.update()
-    
     display.update_buff()
