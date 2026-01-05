@@ -1,8 +1,8 @@
 import machine, time
-import I2C_Scanner
+from I2C_Scanner_v1 import I2C_Scanner
 
-i2c = machine.I2C()
-SC = I2C_Scanner.I2C_Scanner(i2c)
+i2c = machine.I2C(0, scl=5, sda=4, freq=400000, timeout=50000)
+SC = I2C_Scanner(i2c)
 
 print("\n\nRunning Scanner!")
 if SC.hasOLED:

@@ -1,7 +1,7 @@
 import dht, machine, time
 
 
-D = dht.DHT11(machine.Pin(8))
+D = dht.DHT11(machine.Pin(3))
 lastDisplay = 0 # never displayd DHT so far
 interval = 30000 # 30 seconds
 
