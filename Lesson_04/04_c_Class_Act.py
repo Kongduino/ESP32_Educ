@@ -6,13 +6,16 @@ SC = I2C_Scanner(i2c)
 lastDisplay = 0 # never displayd DHT so far
 interval = 30000 # 30 seconds
 display = None
+ID_OLED = 60
+ID_6DOF = 41
+ID_TOF = 104
 
 while True:
     if time.ticks_ms() - lastDisplay > interval:
         print("\n\nRunning Scanner!")
         dv = "Devices: "
         SC.check()
-        if SC.hasOLED:
+        if SC.hasDevice(ID_OLED):
             print(" • OLED on!")
             dv += "OLED "
             if display == None:
@@ -24,12 +27,12 @@ while True:
             display.show(rotate180 = False)
         else:
             print(" • No OLED found!")
-        if SC.has6DOF:
+        if SC.hasDevice(ID_6DOF):
             print(" • 6DOF on")
             dv += "6DOF "
         else:
             print(" • No 6DOF found!")
-        if SC.hasTOF:
+        if SC.hasDevice(ID_TOF):
             print(" • TOF on")
             dv += "TOF "
         else:

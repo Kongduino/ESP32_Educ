@@ -117,3 +117,48 @@ while True:
         lastDisplay = time.ticks_ms()
 
 ```
+
+## Let's make it more flexible!
+
+In v3, we're changing tacks a little: the init method builds a dictionary of I2C IDs, which we could later augment, and the `check()` function goes through the list, without knowing in advance what we are looking for. It makes adding more sensors much easier. The usual `hasXXX` properties have been replaced by one `hasDevice()` function/property.
+
+```python
+class I2C_Scanner():
+    def __init__(self, i2c):
+        self._ID_OLED = 60
+        self._ID_6DOF = 41
+        self._ID_TOF = 104
+        self._myI2C = i2c
+        self._objects = {}
+        self._objects[self._ID_OLED] = False
+        self._objects[self._ID_6DOF] = False
+        self._objects[self._ID_TOF] = False
+        self.check()
+
+    def check(self):
+        self._devices = self._myI2C.scan()
+        print(self._devices)
+        for x in self._objects:
+            print(f"Looking for {x}")
+            if x in self._devices:
+                self._objects[x] = True
+
+    @property
+    def hasDevice(self, ID):
+        return self._objects[ID]
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
