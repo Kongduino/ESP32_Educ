@@ -19,15 +19,5 @@ class I2C_Scanner():
                 self._objects[x] = True
 
     @property
-    def hasOLED(self):
-        return self._objects[self._ID_OLED]
-
-    @property
-    def has6DOF(self):
-        return self._objects[self._ID_6DOF]
-
-    @property
-    def hasTOF(self):
-        return self._objects[self._ID_TOF]
-
-
+    def hasDevice(self, ID):
+        return self._objects[ID]
