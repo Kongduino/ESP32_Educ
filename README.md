@@ -37,4 +37,11 @@ If nothing breaks, reset the device to reboot it and open [Thonny](https://thonn
 
 Git clone or download this repository. In Thonny's file browser, on the left, up top, navigate to this folder – it's a bit quirky to use but a few clicks should do the job. Once you have the files and folders in the list, select the Lessons, the `lib` folder, and the `boot.py` file. Click on the burger icon and select `Upload to`. It will take a while but everything will be copied onto the ESP32.
 
+## Lessons
 
+I will add lessons as time permits – I do have a bit of time lately – and create of Table of Contents here.
+
+* [Lesson 01: DHT](https://github.com/Kongduino/ESP32_Educ/tree/master/Lesson_01)
+* [Lesson 02: Neopixel!](https://github.com/Kongduino/ESP32_Educ/tree/master/Lesson_02)
+* [Lesson 03: Intermezzo](https://github.com/Kongduino/ESP32_Educ/tree/master/Lesson_03_Intermezzo)
+* [Lesson 04: A Class Act!](https://github.com/Kongduino/ESP32_Educ/tree/master/Lesson_04)
