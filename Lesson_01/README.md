@@ -103,6 +103,8 @@ The rest of the code is similar. And as mentioned, the `displayDHT()` function c
 
 This way, if the OLED is not plugged in, or not plugged in correctly, the code will still work like in Part A.
 
+### displayString
+
 The way `display` works is different from just a `print()` in the REPL. The library is pretty barebones, and offers a `displayString()` command that uses internally a `drawGlyph()` method: `displayString()` asks `drawGlyph()` to draw each character in the specified font, incrementing the `px` position on the screen from the width of the glyph (character) every time.
 
 The syntax is:

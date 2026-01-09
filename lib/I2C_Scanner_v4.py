@@ -12,6 +12,7 @@ class I2C_Scanner():
             if x in self._devices:
                 self._objects[x] = True
 
-    @property
-    def hasDevice(self, ID):
+    #@property
+    # Since we are passing a parameter, it cannot be a property anymore.
+    def hasDevice(ID):
         return self._objects[ID]

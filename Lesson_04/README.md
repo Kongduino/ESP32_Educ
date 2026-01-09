@@ -4,7 +4,7 @@ We are going to learn about Python's classes. A `Class` is a reusable object tha
 
 Our code so far, when trying to assert whether the OLED is connected, scans the I2C bus, and looks for the ID `60`. Why do this every time, and for every I2C-based device, when we could do it once, and supply an object that has all the answers?
 
-Here is a very basic `I2C_Scanner` class:
+## Part A: A very basic `I2C_Scanner` class:
 
 
 ```python
@@ -35,7 +35,7 @@ class I2C_Scanner_v1():
         return self._hasTOF
 ```
 
-## So what if I want to check regularly?
+## Part B: So what if I want to check regularly?
 
 Like, if I plug in later on a new device. The scanner wouldn't be aware of that, right? Indeed, my dear, it wouldn't be... So... We need to change the code, and add a `check()` function:
 
@@ -118,7 +118,7 @@ while True:
 
 ```
 
-## Let's make it more flexible!
+## Part C: Let's make it more flexible!
 
 In v3, we're changing tacks a little: the init method builds a dictionary of I2C IDs, which we could later augment, and the `check()` function goes through the list, without knowing in advance what we are looking for. It makes adding more sensors much easier. The usual `hasXXX` properties have been replaced by one `hasDevice()` function/property. So the code in Part C has been adapted to use that oone property, passing an ID for each device we want to check on.
 
@@ -143,12 +143,13 @@ class I2C_Scanner():
             if x in self._devices:
                 self._objects[x] = True
 
-    @property
+    #@property
+    # Since we are passing a parameter, it cannot be a property anymore.
     def hasDevice(self, ID):
         return self._objects[ID]
 ```
 
-## Let's make it even more more flexible!
+## Part D: Let's make it even more more flexible!
 
 We're still working so far with a fixed set of devices. What if you wanted to decide, while creating an instance of the `I2C_Scanner` class, of which devices interest you? After all, you may have connected external sensors, and may not be interested in the default ones...
 
@@ -169,7 +170,8 @@ class I2C_Scanner():
             if x in self._devices:
                 self._objects[x] = True
 
-    @property
+    #@property
+    # Since we are passing a parameter, it cannot be a property anymore.
     def hasDevice(self, ID):
         return self._objects[ID]
 ```
@@ -181,6 +183,12 @@ import machine, time
 from I2C_Scanner_v4 import I2C_Scanner
 
 i2c = machine.I2C(0, scl=5, sda=4, freq=400000, timeout=50000)
+#################################
+# What all are these numbers?!? #
+# See Part D of the lesson      #
+#################################
+
+
 ID_OLED = 60
 ID_6DOF = 41
 ID_TOF = 104
@@ -231,3 +239,32 @@ while True:
 The code is quasi identical to the previous version: we just create a dict of the values we want and pass this on. So we now have an `I2C_Scanner` that is flexible enough to accept any kind of I2C device, regardless of whether it's present on the board, or external.
 
 We probably could improve on this, but for now we have a functional class that does the job!
+
+### So, about these numbers???
+
+```
+>>> import machine
+>>> i2c = machine.I2C(0)
+>>> i2c
+I2C(0, scl=9, sda=8, freq=400000, timeout=50000)
+```
+
+When you create an I2C object by default, you can have a look at its parameters: in this case, they are:
+
+* The I2C bus number, 0
+* The SCL pin, 9
+* The SDA pin, 8
+* The `freq`uency, ie the speed: 400 KHz
+* the timeout, in ms: the time after which it will give up trying to connect.
+
+In the example above, I do:
+
+```python
+i2c = machine.I2C(0, scl=5, sda=4, freq=400000, timeout=50000)
+```
+
+The only difference here is the SCL/SDA pins:
+
+![OLED_On_4_5](../Assets/OLED_On_4_5.png)
+
+I connected the OLED to another set of pins, 4 and 5, and had to specify them when creating the `i2c` object, or else the code wouldn't have found the OLED, as it would have been on the wrong bus.
