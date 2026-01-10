@@ -1,7 +1,7 @@
 import machine, time
 from I2C_Scanner_v4 import I2C_Scanner
 
-i2c = machine.I2C(0, scl=5, sda=4, freq=400000, timeout=50000)
+i2c = machine.I2C(0, scl=5, sda=4, freq=500000, timeout=50000)
 #################################
 # What all are these numbers?!? #
 # See Part D of the lesson      #
