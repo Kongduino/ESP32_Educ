@@ -16,6 +16,7 @@ The main loop displays the current page, based on `pageNum` and `menuItem`. It t
 
 ```python
 pageNum = 0
+menuItem = 0
 while True:
     pages[pageNum]()
     time.sleep(5)
