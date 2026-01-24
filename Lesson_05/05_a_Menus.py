@@ -36,6 +36,7 @@ def drawPage0():
 def drawPage1():
     display.fill(0)
     display.cls()
+    display.displayString(FreeSans9Defs, "P1", -2, 0)
     if menuItem == 0:
         display.displayString(FreeSans9Defs, "> Menu 0", 0, 4)
     else:
@@ -51,7 +52,14 @@ def drawPage1():
     display.show(rotate180 = False)
 
 pages = [drawPage0, drawPage1]
-
-pages[0]()
-
+pageNum = 0
+while True:
+    pages[pageNum]()
+    time.sleep(5)
+    menuItem += 1
+    if menuItem == 3:
+        pageNum += 1
+        menuItem = 0
+        if pageNum == 2:
+            pageNum = 0
 
