@@ -16,7 +16,6 @@ adcY.width(ADC.WIDTH_12BIT)
 adcX.atten(ADC.ATTN_11DB)
 adcY.atten(ADC.ATTN_11DB)
 
-
 while True:
     raw_X_value = adcX.read()
     raw_Y_value = adcY.read()
@@ -34,4 +33,3 @@ while True:
     print(f"Raw X: {raw_X_value}; Raw Y: {raw_Y_value}.")
 
     time.sleep(0.3)
-
