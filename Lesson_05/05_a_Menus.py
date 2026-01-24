@@ -12,8 +12,6 @@ else:
     from ssd1306 import SSD1306_I2C
     display = SSD1306_I2C(128, 64, i2c)
 
-menuItem = 0
-
 def drawPage0():
     global menuItem
     display.fill(0)
@@ -53,6 +51,7 @@ def drawPage1():
 
 pages = [drawPage0, drawPage1]
 pageNum = 0
+menuItem = 0
 while True:
     pages[pageNum]()
     time.sleep(5)
