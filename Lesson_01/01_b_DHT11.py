@@ -1,4 +1,5 @@
-import dht, machine, time, sys
+import dht, machine, time
+from freesans9 import FreeSans9Defs
 
 i2c = machine.I2C(0)
 devices = i2c.scan()
@@ -10,7 +11,6 @@ if devices.count(0x3c) == 0:
     print("No SSD1306!")
 else:
     from ssd1306 import SSD1306_I2C
-    from freesans9 import FreeSans9Defs
     display = SSD1306_I2C(128, 64, i2c)
     hasOLED = True
 
@@ -36,3 +36,4 @@ def displayDHT():
 while True:
     if time.ticks_ms() - lastDisplay > interval:
         displayDHT()
+

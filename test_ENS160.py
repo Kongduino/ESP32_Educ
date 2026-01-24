@@ -1,4 +1,5 @@
 from ENS160 import ENS160
+from freesans9 import FreeSans9Defs
 import dht, machine, time
 
 D = dht.DHT11(machine.Pin(3))
