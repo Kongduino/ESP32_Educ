@@ -26,7 +26,7 @@ This lesson is divided into 3 steps. [Part a](https://github.com/Kongduino/ESP32
 ```python
 import dht, machine, time
 
-D = dht.DHT11(machine.Pin(8))
+D = dht.DHT11(machine.Pin(3))
 lastDisplay = 0 # never displayd DHT so far
 interval = 30000 # 30 seconds
 
