@@ -26,7 +26,7 @@ This lesson is divided into 3 steps. [Part a](https://github.com/Kongduino/ESP32
 ```python
 import dht, machine, time
 
-D = dht.DHT11(machine.Pin(8))
+D = dht.DHT11(machine.Pin(3))
 lastDisplay = 0 # never displayd DHT so far
 interval = 30000 # 30 seconds
 
@@ -52,7 +52,7 @@ This gives you much more control on the execution of the loop than using `time.s
 
 The `displayDHT()` function reads DHT data, and prints it out. Having a function here isn't necessary, as we only use it in one place, but it is good practice – it keeps the code cleaner, and easier to read.
 
-The `global` keyword here tells Python that we will be using **existing** global variables, `D` and `lastDisplay` – without this new variables, local to `displayDHT()` would be created, which would lead to errors.
+The `global` keyword here tells Python that we will be using **existing** global variables, `D` and `lastDisplay` – without this new variables, local to `displayDHT()` would be created, which would lead to errors.
 
 The way the DHT11 works is, you ask it first to take measurements: it does not do this automatically, but needs to be prompted. Then you can read the current temperature and humidity. And display it in the REPL.
 
